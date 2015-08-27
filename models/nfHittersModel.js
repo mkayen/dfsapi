@@ -31,7 +31,13 @@ var nfHittersSchema = new mongoose.Schema({
 	},
 	fanduel_ratio:{
 		type: Number
-	},	
+	},
+	swishPoints:{
+		type: Number
+	},
+	swishValue:{
+		type: Number
+	}
 });
 
 var nfHitterModel = mongoose.model('nfHitter', nfHittersSchema)
