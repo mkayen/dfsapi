@@ -10,8 +10,8 @@ request('https://www.numberfire.com/mlb/fantasy/fantasy-baseball-projections/pit
 	function (error, response, html) {
 		if (!error && response.statusCode == 200) {
     		var $ = cheerio.load(html)
-		    var variable = $('script')[2].children[0].data
+		    var variable = $('script')[3].children[0].data
 		   	var data = variable.substring(variable.indexOf("= ")+2, variable.indexOf(";"))
-		   	fs.writeFile('../cache/nfPitchers.json', data)
+		   	fs.writeFile('./cache/nfPitchers.json', data)
   	};
 });
