@@ -12,6 +12,8 @@ request('https://swishanalytics.com/optimus/mlb/dfs-batter-projections',
 			var $ = cheerio.load(html)
 			var variable = $('script')[19].children[0].data
 			var data = variable.substring(variable.indexOf("= ")+2, variable.indexOf(";"))
-			fs.writeFile('../cache/swishHitters.json', data)
+			fs.writeFile('../cache/swishHitters.json', data, error)
 		}
 	})
+
+// Model -> batterArray

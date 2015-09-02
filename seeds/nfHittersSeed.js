@@ -34,20 +34,6 @@ var seed = function(){
 		playersData[playerId]
 	}
 
-	/* Swish Array Prep */
-	// var name = swishData[i].player_name
-	// var pts = swishData[i].fd_pts;
-	// var val = swishData[i].fd_value;
-	// var swishArray = [];
-	// var swishLength = swishData.length;
-	// for(var i=0; i < swishLength; i++){
-	// 	var swishPlayer = [];
-	// 	swishPlayer.push(name)
-	// 	swishPlayer.push(pts)
-	// 	swishPlayer.push(val)
-	// 	swishArray.push(swishPlayer)
-	// }
-
 	/* Associate Team Abbreviation with Player based on team_id */
 	var playerArray = [];
 	for(var key in playersData){
