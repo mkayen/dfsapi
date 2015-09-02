@@ -4,8 +4,8 @@
 var json = require("json");
 var mongoose = require("mongoose");
 var player = require('../models/nfHittersModel.js');
-var jsonData = require('../cache/nfHitters.json');
-var swishData = require('../cache/swishHitters.json')
+var jsonData = require('./nfHitters.json');
+var swishData = require('./swishHitters.json')
 var q = require('q')
 
 var wipeDB = function(){
