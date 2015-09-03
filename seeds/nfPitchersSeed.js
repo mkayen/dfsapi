@@ -6,6 +6,7 @@ var mongoose = require("mongoose");
 var player = require('../models/nfPitchersModel.js')
 var jsonData = require('../cache/nfPitchers.json')
 var q = require('q')
+var db = require('../db.js').db
 
 var wipeDB = function () {
    	player.find({}).remove(function () {});
@@ -37,6 +38,9 @@ var seed = function(){
 
 	/* Push Data to DB */
 	player.create(playerArray)
+
+	/* Close DB Connection */
+	db.close()
 
 };
 

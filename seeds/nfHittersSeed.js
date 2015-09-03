@@ -7,6 +7,7 @@ var player = require('../models/nfHittersModel.js');
 var jsonData = require('../cache/nfHitters.json');
 var swishData = require('../cache/swishHitters.json')
 var q = require('q')
+var db = require('../db.js').db
 
 var wipeDB = function(){
 	player.find({}).remove(function() {});
@@ -61,6 +62,9 @@ var seed = function(){
 
 	/* Push Data to DB */
 	player.create(playerArray)
+
+	/* Close DB Connection */
+	db.close()
 };
 
 mongoose.connection.once('open', function(){
