@@ -40,7 +40,7 @@ var seed = function(){
 	player.create(playerArray)
 
 	/* Close DB Connection */
-	db.close()
+	// db.close()
 
 };
 
