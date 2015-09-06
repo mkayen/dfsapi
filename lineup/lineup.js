@@ -1,13 +1,15 @@
-var data = require("./readCache");
+var config = require("./config");
+
+var rawData = require("./resources/readCache");
+
 var multiTaskers = [["rightField","leftField", "centerField"]];
 
-var simpleData = Object.getOwnPropertyNames(data).map(function(position){
-    var players = simplify(data, position, multiTaskers);
-    console.log(position, players.length);
-    return players;
-}).filter(function(players){
-    return players.length > 0;
+var data = Object.getOwnPropertyNames(rawData).map(function(position){
+    return parse(data[position]);
 });
+
+var prevPlayerCost = null;
+return players;
 
 var mod = 10000000,
     combinations = 1,
@@ -60,31 +62,16 @@ console.log(
     "Remaining time " + Math.round(((Date.now() - time) * ((combinations - itemCount)/ mod)) / 1000) + "s"
 );
 
-function simplify(data, position, multiTaskers){
-    var players = data[position].filter(function(player){
+function parse(players){
+    return players.filter(function(player){
         return player.fanduel_fp && player.fanduel_salary;
     }).map(function(player){
         return {
             name: player.name,
             id: player.id,
             score: player.fanduel_fp,
-            cost: player.fanduel_salary,
-            ratio: player.fanduel_fp/player.fanduel_salary*1000
+            cost: player.fanduel_salary
         }
-    });
-    var prevPlayerCost = null;
-    return players.sort(function(playera, playerb) {
-        var diff = playerb.score - playera.score;
-        if(diff === 0){
-            diff = playera.cost - playerb.cost;
-        }
-        return diff;
-    }).filter(function(player){
-        if(prevPlayerCost == null || prevPlayerCost > player.cost){
-            prevPlayerCost = player.cost;
-            return true;
-        }
-        return false;
     });
 }
 
