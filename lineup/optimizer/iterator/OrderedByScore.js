@@ -3,7 +3,7 @@ var Tree = require("./structures/Tree"),
 
 module.exports = OrderedByScoreIterator;
 
-function OrderedByScoreIterator(playersByPosition, positionsCount){
+function OrderedByScoreIterator(playersByPosition, maxCost, positionsCount){
     this._initializePositions(playersByPosition, positionsCount);
 }
 

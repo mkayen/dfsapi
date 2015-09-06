@@ -1,21 +1,28 @@
-var FilterFilter = module.exports = {};
+module.exports = LogicalFilter;
 
 /**
  * Remove players that cannot be present in an optimal lineup. The basic idea is to remove from a position any player
  * that have a higher cost and a lower score than any other eligible players for that position. If
  * n players can be chosen, any player that has higher cost and lower score than n other eligible players
  * is removed.
- *
+ * @constructor
+ */
+function LogicalFilter(){
+
+}
+
+/**
+ * Remove players that cannot be present in an optimal lineup.
  * @param playersByPositions An object of position=>players
- * @param positionsCount positionsCount An object of position=># of players
+ * @param config An object of position=># of players
  * @returns An object of position=>players
  */
-FilterFilter.filter = function(playersByPositions, positionsCount){
+LogicalFilter.prototype.filter = function(playersByPositions, config){
     var optimizedPlayersByPositions = {};
-    //Call filterPosition for each position
-    Object.getOwnPropertyNames(playersByPositions).forEach(function(position){
-        optimizedPlayersByPositions[position] = FilterFilter.filterPosition(playersByPositions[position], positionsCount[position]);
-    });
+
+    for(var position in playersByPositions){
+        optimizedPlayersByPositions[position] = this.filterPosition(playersByPositions[position], config[position].count);
+    }
     return optimizedPlayersByPositions;
 };
 
@@ -25,7 +32,7 @@ FilterFilter.filter = function(playersByPositions, positionsCount){
  * @param n The number of players in the lineup for that position
  * @returns An array of players
  */
-FilterFilter.filterPosition = function(players, n){
+LogicalFilter.prototype.filterPosition = function(players, n){
     var orderedMinCosts = []; //Ordered cost of the n less costly players encountered while filtering
     return players.sort(function(playera, playerb) {
         //Sort players by their score. If there is a tie,

@@ -4,20 +4,20 @@ module.exports = SequentialIterator;
  * Iterate over all the lineups sequentially.
  *
  * @param playersByPosition An object of position=>players
- * @param positionsCount An object of position=># of players
+ * @param config An object of position=># of players
  * @constructor
  */
-function SequentialIterator(playersByPosition, positionsCount){
-    this._initializePositions(playersByPosition, positionsCount);
+function SequentialIterator(playersByPosition, maxCost, config){
+    this._initializePositions(playersByPosition, config);
 }
 
 /**
  * Initialize the internal representation of the players and position
  * @param playersByPosition An object of position=>players
- * @param positionsCount An object of position=># of players
+ * @param config An object of position=># of players
  * @private
  */
-SequentialIterator.prototype._initializePositions = function(playersByPosition, positionsCount){
+SequentialIterator.prototype._initializePositions = function(playersByPosition, config){
     var $this = this;
     $this._playersByPosition = [];
     $this._positions = [];
@@ -26,7 +26,7 @@ SequentialIterator.prototype._initializePositions = function(playersByPosition, 
     // the players are added n times
     // The _positions array holds the mapping of position index to position name
     Object.getOwnPropertyNames(playersByPosition).forEach(function(position){
-        for(var i = 0; i < positionsCount[position]; i++){
+        for(var i = 0; i < config[position].count; i++){
             $this._playersByPosition.push(playersByPosition[position]);
             $this._positions.push(position);
         }
@@ -34,13 +34,13 @@ SequentialIterator.prototype._initializePositions = function(playersByPosition, 
 };
 
 /**
- * Call the callback function for each posible lineup
+ * Call the callback function for each possible lineup
  * @param callback
  */
 SequentialIterator.prototype.forEach = function(callback){
     var lineup = null;
     while(lineup = this._nextLineup(lineup)){
-        callback(this._getPlayers(lineup));
+        callback(this._getPlayers(lineup), lineup);
     }
 };
 
