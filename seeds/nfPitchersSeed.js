@@ -4,7 +4,7 @@
 var json = require("json");
 var mongoose = require("mongoose");
 var player = require('../models/nfPitchersModel.js')
-var jsonData = require('../cache/nfPitchers.json')
+var jsonData = require('./nfPitchers.json')
 var q = require('q')
 var db = require('../db.js').db
 
