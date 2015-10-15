@@ -68,5 +68,10 @@ var seed = function(){
 };
 
 mongoose.connection.once('open', function(){
-	wipeDB().then(seed);
+	wipeDB()
+	.then(seed)
+	.then(function(){
+		process.exit
+		})
+	});
 })
