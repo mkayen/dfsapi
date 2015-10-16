@@ -1,10 +1,10 @@
 /* NumberFire Pitchers Seed file */
-
+ 
 'use strict';
 var json = require("json");
 var mongoose = require("mongoose");
 var player = require('../models/nfPitchersModel.js')
-var jsonData = require('./nfPitchers.json')
+var jsonData = require('../cache/nfPitchers.json')
 var q = require('q')
 var db = require('../db.js').db
 
@@ -37,13 +37,12 @@ var seed = function(){
 	}
 
 	/* Push Data to DB */
-	player.create(playerArray)
-
-	/* Close DB Connection */
-	// db.close()
+	return player.create(playerArray)
 
 };
 
 mongoose.connection.once('open', function(){
-	wipeDB().then(seed);
+	wipeDB()
+	.then(seed)
+	.then(function(){process.exit()});
 })

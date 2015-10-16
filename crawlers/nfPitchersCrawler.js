@@ -12,6 +12,6 @@ request('https://www.numberfire.com/mlb/fantasy/fantasy-baseball-projections/pit
     		var $ = cheerio.load(html)
 		    var variable = $('script')[3].children[0].data
 		   	var data = variable.substring(variable.indexOf("= ")+2, variable.indexOf(";"))
-		   	fs.writeFile('./cache/nfPitchers.json', data)
+		   	fs.writeFile('../cache/nfPitchers.json', data)
   	};
 });
