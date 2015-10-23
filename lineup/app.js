@@ -30,6 +30,7 @@ cache.getData().then(function(players) {
         .getLineup(Baseball.parseData(players), 35000);
 
     printPlayers(res.playersByPosition, res.config, res.best.lineup);
+    console.log(res.best)
     console.log("FINISHED - score: " + Math.round(res.best.score*100)/100 + ", cost: " + res.best.cost + ", iterations: " + res.count + ", time: " + (Date.now() - start) + "ms");
 }).catch(function(err){
     console.error(err.stack)
