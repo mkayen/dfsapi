@@ -59,4 +59,12 @@ app.get('/api/nfHitters/search', function(req, res, next){
 	});
 });
 
+/* Basketball API */
+
+app.get('/api/basketball', function(req, res, next){
+	nfBasketballModel.find({}, function(err, data){
+		res.json(data);
+	});
+});
+
 var server = app.listen(process.env.PORT || 3000);

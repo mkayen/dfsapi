@@ -5,6 +5,7 @@ var cheerio = require("cheerio");
 var request = require("request");
 var json = require("json");
 var fs = require('fs');
+var path = require('path')
 
 request('https://swishanalytics.com/optimus/mlb/dfs-batter-projections',
 	function(error, response, html){
@@ -12,6 +13,8 @@ request('https://swishanalytics.com/optimus/mlb/dfs-batter-projections',
 			var $ = cheerio.load(html)
 			var variable = $('script')[19].children[0].data
 			var data = variable.substring(variable.indexOf("= ")+2, variable.indexOf(";"))
-			fs.writeFile('../cache/swishHitters.json', data)
+			console.log(data)
+			// var filePath = path.join(__dirname, "cache/swishHitters.json")
+			// fs.writeFile(filePath, data)
 		}
 	})
