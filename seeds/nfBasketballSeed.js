@@ -4,7 +4,7 @@
 var json = require('json');
 	mongoose = require('mongoose');
 	player = require('../models/basketballModel.js');
-	jsonData = require('../cache/nfBasketball.json');
+	jsonData = require('../crawlers/cache/nfBasketball.json');
 	q = require('q');
 	db = require('../db.js').db
 
@@ -27,6 +27,7 @@ var seed = function(){
 	var playerArray = [];
 	for(var key in playersData){
 		var teamId = playersData[key].team_id;
+		var position = playersData[key].depth_position
 		playersData[key].team = jsonData.teams[teamId].abbrev;
 		playerArray.push(playersData[key])
 	}
