@@ -68,4 +68,15 @@ app.get('/api/basketball', function(req, res, next){
 	});
 });
 
+
+/* Query for any DB Parameter (exact search) */
+app.get('/api/basketball/search', function(req, res, next){
+	nfBasketballModel.find(req.query, function(err, data){
+		res.json(data);
+	})
+}
+
+
+
+
 var server = app.listen(process.env.PORT || 3000);
