@@ -16,7 +16,7 @@ var basketballPlayersSchema = new mongoose.Schema({
 	team:{
 		type: String
 	},
-	position:{
+	depth_position:{
 		type: String,
 		ref: 'position'
 	},
