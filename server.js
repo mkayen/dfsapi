@@ -73,8 +73,8 @@ app.get('/api/basketball', function(req, res, next){
 app.get('/api/basketball/search', function(req, res, next){
 	nfBasketballModel.find(req.query, function(err, data){
 		res.json(data);
-	})
-}
+	});
+});
 
 
 
