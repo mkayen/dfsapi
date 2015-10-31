@@ -29,7 +29,7 @@ var basketballPlayersSchema = new mongoose.Schema({
 	fanduel_ratio:{
 		type: Number
 	}
-})
+});
 
 var nfBasketballModel = mongoose.model('nfBasketballPlayer', basketballPlayersSchema)
 

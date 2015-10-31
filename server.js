@@ -8,6 +8,7 @@ var path = require('path');
 var app = express();
 var nfHitterModel = require('./models/nfHittersModel');
 var nfPitcherModel = require('./models/nfPitchersModel');
+var nfBasketballModel = require('./models/basketballModel')
 
 app.get('/', function(req, res){
 	res.send('This is to test the server');

@@ -1,11 +1,12 @@
 /* NumberFire Basketball Seed File */
 
+
 var json = require('json');
 	mongoose = require('mongoose');
 	player = require('../models/basketballModel.js');
-	jsonData = require('../cache/basketballPlayers.json');
+	jsonData = require('../cache/nfBasketball.json');
 	q = require('q');
-	// db = require('../db.js').db
+	db = require('../db.js').db
 
 var wipeDB = function () {
    	player.find({}).remove(function () {});
@@ -18,7 +19,7 @@ var seed = function(){
 	var length = projectionData.length
 	for(var i = 0; i < length; i++){
 		var playerId = projectionData[i].nba_player_id;
-		playersDara[playerId].fanduel_fp = projectionData[i].fanduel_fp;
+		playersData[playerId].fanduel_fp = projectionData[i].fanduel_fp;
 		playersData[playerId].fanduel_ratio = projectionData[i].fanduel_ratio
 		playersData[playerId].fanduel_salary = projectionData[i].fanduel_salary
 	}
@@ -31,8 +32,7 @@ var seed = function(){
 	}
 
 	return player.create(playerArray)
-	proces
-
+	
 };
 
 mongoose.connection.once('open', function(){
