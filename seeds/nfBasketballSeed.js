@@ -1,10 +1,10 @@
 /* NumberFire Basketball Seed File */
 
-
 var json = require('json');
 	mongoose = require('mongoose');
 	player = require('../models/basketballModel.js');
 	jsonData = require('../crawlers/cache/nfBasketball.json');
+	swishData = require('../crawlers/cache/swishBasketball.json')
 	q = require('q');
 	db = require('../db.js').db
 
@@ -27,10 +27,18 @@ var seed = function(){
 	var playerArray = [];
 	for(var key in playersData){
 		var teamId = playersData[key].team_id;
-		var position = playersData[key].depth_position
+		var swishLength = swishData.length;
+			// for(var i=0; i < swishLength; i++){
+			// 	if(swishData[i].player_name=playersData[key].name){
+			// 		playersData[key].fd_pos=swish[i].fd_pos
+			// 	}
+			// }
+		var position = playersData[key].depth_position;
 		playersData[key].team = jsonData.teams[teamId].abbrev;
 		playerArray.push(playersData[key])
 	}
+
+	console.log(playerArray)
 
 	return player.create(playerArray)
 	

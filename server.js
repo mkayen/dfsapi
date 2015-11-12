@@ -9,6 +9,7 @@ var app = express();
 var nfHitterModel = require('./models/nfHittersModel');
 var nfPitcherModel = require('./models/nfPitchersModel');
 var nfBasketballModel = require('./models/basketballModel')
+var swishModel = require('./models/swishModel')
 
 app.get('/', function(req, res){
 	res.send('This is to test the server');
@@ -76,7 +77,20 @@ app.get('/api/basketball/search', function(req, res, next){
 	});
 });
 
+/* Basketball API */
+
+app.get('/api/swish', function(req, res, next){
+	swishModel.find({}, function(err, data){
+		res.json(data);
+	});
+});
 
 
+/* Query for any DB Parameter (exact search) */
+app.get('/api/swish/search', function(req, res, next){
+	swishModel.find(req.query, function(err, data){
+		res.json(data);
+	});
+});
 
 var server = app.listen(process.env.PORT || 3000);
